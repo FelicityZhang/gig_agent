@@ -1,5 +1,6 @@
 class GigsController < ApplicationController
   before_action :set_gig, only: [:show, :update, :destroy]
+  before_action :authorize_request, except: %i[index show]
 
   # GET /gigs
   def index

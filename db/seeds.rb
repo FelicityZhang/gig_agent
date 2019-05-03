@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Gig.create!(name: "Runway Gig 1", description: "This will be a 3 day gig! Paid $$$")
+Gig.create!(name: "Runway Gig 2", description: "This will be a 3 day gig! Paid $$$")
+Gig.create!(name: "Runway Gig 3", description: "This will be a 3 day gig! Paid $$$")
