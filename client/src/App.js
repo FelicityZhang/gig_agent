@@ -10,12 +10,14 @@ import Register from './components/Register'
 import ShowArtists from './components/ShowArtists';
 import ShowGigs from './components/ShowGigs';
 import ShowGigItem from './components/ShowGigItem';
+import PostJob from './components/PostJob';
 
 import {
   loginUser,
   registerUser,
   showGigs,
-  showArtists
+  showArtists,
+  postJob
 } from './services/api-helper'
 
 
@@ -29,6 +31,10 @@ class App extends Component {
         email: "",
         password: ""
       },
+      postJobForm: {
+        name: '',
+        description: ''
+      },
       artists: [],
       gigItem: null,
       gigs: []
@@ -39,6 +45,8 @@ class App extends Component {
     this.handleLogin = this.handleLogin.bind( this )
     this.handleRegister = this.handleRegister.bind( this )
     this.handleLogout = this.handleLogout.bind( this )
+    this.addJob = this.addJob.bind( this );
+    this.handleFormChange = this.handleFormChange.bind( this );
     this.authHandleChange = this.authHandleChange.bind( this )
   }
 
@@ -102,7 +110,28 @@ class App extends Component {
     const gigs = await showGigs()
     this.setState( { gigs } )
   }
+  //------------------------PostJob-----------------------------------
+  async addJob() {
+    const newJob = await postJob( this.state.postJobForm )
+    this.setState( prevState => (
+      {
+        gigs: [ ...prevState.gigs, newJob ],
+        postJobForm: {
+          name: '',
+          description: ''
+        }
+      } ) )
+  }
 
+  handleFormChange( e ) {
+    const { name, value } = e.target
+    this.setState( prevState => ( {
+      postJobForm: {
+        ...prevState.postJobForm,
+        [ name ]: value
+      }
+    } ) )
+  }
 
   render() {
     return (
@@ -145,6 +174,15 @@ class App extends Component {
 
         <Route path="/gigs/:id" render={ () => (
           <ShowGigItem gigItem={ this.state.gigItem } />
+        ) } />
+
+        <Link to="/post_job">Post Job</Link>
+        <Route path="/post_job" render={ () => (
+          <PostJob
+            gigs={ this.state.gigs }
+            handleChange={ this.handleFormChange }
+            handleSubmit={ this.addJob }
+            postJobForm={ this.state.postJobForm } />
         ) } />
       </div >
     )

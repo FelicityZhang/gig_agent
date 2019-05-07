@@ -24,7 +24,7 @@ export const showGigItem = ( id ) => {
         .catch( e => e )
 }
 
-export const postGig = ( item ) => {
+export const postJob = ( item ) => {
     const opts = {
         method: 'POST',
         body: JSON.stringify( item ),
