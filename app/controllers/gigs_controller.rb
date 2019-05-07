@@ -26,7 +26,7 @@ class GigsController < ApplicationController
   end
 
   # PATCH/PUT /gigs/1
-  def update
+  def updated
     if @gig.update(gig_params)
       render json: @gig
     else
