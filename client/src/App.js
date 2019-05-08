@@ -11,13 +11,19 @@ import ShowArtists from './components/ShowArtists';
 import ShowGigs from './components/ShowGigs';
 import ShowGigItem from './components/ShowGigItem';
 import PostJob from './components/PostJob';
+import SelectedJobs from './components/SelectedJobs';
+import ProfilePage from './components/ProfilePage';
+
 
 import {
   loginUser,
   registerUser,
   showGigs,
   showArtists,
-  postJob
+  showUsers,
+  postJob,
+  showGigItem,
+  putProfile
 } from './services/api-helper'
 
 
@@ -37,8 +43,15 @@ class App extends Component {
       },
       artists: [],
       gigItem: null,
-      gigs: []
-
+      gigs: [],
+      selectedJobs: [],
+      users: [],
+      profileForm: {
+        photo: '',
+        role: '',
+        price: '',
+        description: ''
+      }
     }
     // this.handleFormChange = this.handleFormChange.bind( this )
     this.handleLoginButton = this.handleLoginButton.bind( this )
@@ -46,8 +59,11 @@ class App extends Component {
     this.handleRegister = this.handleRegister.bind( this )
     this.handleLogout = this.handleLogout.bind( this )
     this.addJob = this.addJob.bind( this );
+    this.getGigItem = this.getGigItem.bind( this )
     this.handleFormChange = this.handleFormChange.bind( this );
     this.authHandleChange = this.authHandleChange.bind( this )
+    this.handleProfileChange = this.handleProfileChange.bind( this )
+    this.updateProfile = this.updateProfile.bind( this )
   }
 
   // -------------------------------------Auth-----------------------------------------------------
@@ -110,6 +126,17 @@ class App extends Component {
     const gigs = await showGigs()
     this.setState( { gigs } )
   }
+
+  async getUsers() {
+    const users = await showUsers()
+    this.setState( { users } )
+  }
+
+  async getGigItem( id ) {
+    const gigItem = await showGigItem( id );
+    this.setState( { gigItem } )
+  }
+
   //------------------------PostJob-----------------------------------
   async addJob() {
     const newJob = await postJob( this.state.postJobForm )
@@ -133,7 +160,45 @@ class App extends Component {
     } ) )
   }
 
+  //-----------------------Update/Create Profile/Users ---------------------------------
+
+  async updateProfile( userItem ) {
+    const updatedProfileItem = await putProfile( this.state.profileForm, userItem.user_id );
+    const index = this.state.users.indexOf( userItem );
+    const usersArray = this.state.users
+    usersArray[ index ] = updatedProfileItem
+    this.setState( {
+      users: usersArray
+    } )
+  }
+
+
+
+  handleProfileChange( e ) {
+    const { name, value } = e.target
+    this.setState( prevState => ( {
+      profileForm: {
+        ...prevState.profileForm,
+        [ name ]: value
+      }
+    } ) )
+  }
+  //-------------------------Applied Jobs-------------------------------------
+  handleListToggle( job ) {
+    const selectedJobs = this.state.selectedJobs.slice()
+
+    if ( selectedJobs.some( listJob => listJob.id === job.id ) ) {
+      alert( 'You already applied this job' )
+    }
+    else {
+      selectedJobs.push( job )
+    }
+    this.setState( { selectedJobs } )
+  }
+
   render() {
+    console.log( this.state );
+
     return (
       <div className="App" >
         <div>
@@ -161,10 +226,14 @@ class App extends Component {
 
         <Link to="/artist_infos">Artists</Link>&nbsp;
         <Link to="/gigs">Gigs</Link>
+        <Link to="/post_job">Post Job</Link>
+        <Link to="/applied_job">My Applications</Link>
+        <Link to='/my_profile'>My Profile</Link>
 
         <Route exact path="/gigs" render={ () => (
           <ShowGigs
             gigs={ this.state.gigs }
+            getGigItem={ this.getGigItem }
           />
         ) } />
 
@@ -173,16 +242,33 @@ class App extends Component {
         ) } />
 
         <Route path="/gigs/:id" render={ () => (
-          <ShowGigItem gigItem={ this.state.gigItem } />
+          <ShowGigItem gigItem={ this.state.gigItem }
+            onListToggle={ () => this.handleListToggle( this.state.gigItem ) }
+          />
         ) } />
 
-        <Link to="/post_job">Post Job</Link>
         <Route path="/post_job" render={ () => (
           <PostJob
             gigs={ this.state.gigs }
             handleChange={ this.handleFormChange }
             handleSubmit={ this.addJob }
             postJobForm={ this.state.postJobForm } />
+        ) } />
+
+        <Route path='/applied_job' render={ () => (
+          <SelectedJobs
+            getGigItem={ this.getGigItem }
+            jobItem={ this.state.gigItem }
+            selectedJobs={ this.state.selectedJobs } />
+        ) } />
+
+        <Route path='/my_profile' render={ ( props ) => (
+          <ProfilePage
+            profileForm={ this.state.profileForm }
+            users={ this.state.users }
+            updateProfile={ this.updateProfile }
+            handleChange={ this.handleProfileChange }
+            currentUser={ this.state.currentUser } />
         ) } />
       </div >
     )

@@ -8,7 +8,7 @@ export default class ShowArtists extends Component {
                 { this.props.artists.map( artist => (
                     <React.Fragment key={ artist.id }>
                         <h3>{ artist.name }</h3>
-                        <h5>{ artist.price }</h5>
+                        <h2>{ artist.price }</h2>
                         <h5>More Info</h5>
 
                     </React.Fragment >

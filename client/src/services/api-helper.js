@@ -12,6 +12,12 @@ export const showGigs = () => {
         .catch( e => e )
 }
 
+export const showUsers = () => {
+    return fetch( `${ baseUrl }/users` )
+        .then( resp => resp.json() )
+        .catch( e => e )
+}
+
 export const showArtistItem = ( id ) => {
     return fetch( `${ baseUrl }/artist_infos/${ id }` )
         .then( resp => resp.json() )
@@ -23,6 +29,8 @@ export const showGigItem = ( id ) => {
         .then( resp => resp.json() )
         .catch( e => e )
 }
+
+
 
 export const postJob = ( item ) => {
     const opts = {
@@ -39,6 +47,7 @@ export const postJob = ( item ) => {
         .catch( e => e )
 }
 
+
 export const destroyGig = ( id ) => {
     const opts = {
         method: 'DELETE',
@@ -49,6 +58,22 @@ export const destroyGig = ( id ) => {
     return fetch( `${ baseUrl }/foods/${ id }`, opts )
         .catch( e => e )
 }
+
+export const putProfile = ( item, id ) => {
+    const opts = {
+        method: 'PUT',
+        body: JSON.stringify( item ),
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${ localStorage.getItem( 'jwt' ) }`
+        }
+    };
+
+    return fetch( `${ baseUrl }/users/${ id }`, opts )
+        .then( resp => resp.json() )
+        .catch( e => e )
+}
+
 
 
 //------------------------------------Auth------------------------------------------
