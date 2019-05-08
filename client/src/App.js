@@ -23,6 +23,7 @@ import {
   showUsers,
   postJob,
   showGigItem,
+  showUserItem,
   putProfile
 } from './services/api-helper'
 
@@ -67,17 +68,22 @@ class App extends Component {
   }
 
   // -------------------------------------Auth-----------------------------------------------------
-  componentDidMount() {
+  async componentDidMount() {
     this.getArtists()
+
     this.getGigs()
     // token : checkuser
     const token = localStorage.getItem( "jwt" );
     if ( token ) {
-      const userData = decode( token );
+      const userData = await decode( token );
       this.setState( {
         currentUser: userData
       } )
     }
+    if ( this.state.currentUser ) {
+      this.updateUser()
+    }
+
   }
 
 
@@ -162,8 +168,14 @@ class App extends Component {
 
   //-----------------------Update/Create Profile/Users ---------------------------------
 
+  async updateUser() {
+    const user = await showUserItem( this.state.currentUser.user_id || this.state.currentUser.id )
+    this.setState( { currentUser: user } )
+  }
+
+
   async updateProfile( userItem ) {
-    const updatedProfileItem = await putProfile( this.state.profileForm, userItem.user_id );
+    const updatedProfileItem = await putProfile( this.state.profileForm, userItem.id );
     const index = this.state.users.indexOf( userItem );
     const usersArray = this.state.users
     usersArray[ index ] = updatedProfileItem

@@ -30,7 +30,11 @@ export const showGigItem = ( id ) => {
         .catch( e => e )
 }
 
-
+export const showUserItem = ( id ) => {
+    return fetch( `${ baseUrl }/users/${ id }` )
+        .then( resp => resp.json() )
+        .catch( e => e )
+}
 
 export const postJob = ( item ) => {
     const opts = {

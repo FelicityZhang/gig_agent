@@ -11,7 +11,8 @@ gig3 = Gig.create!(name: "Runway", description: "This will be a 3 hours presenta
 gig4 = Gig.create!(name: "new season collection", description: "This will be 1 day shooting! Paid $440") 
 gig5 = Gig.create!(name: "fashion show", description: "This will be half day show! Paid $240") 
 
-ArtistInfo.create!(name: 'Amani Qing', description: 'dancer, actor', price: '$75/hour', gigs: [gig1, gig2, gig3])
-ArtistInfo.create!(name: 'Lisa Yang', description: 'model, actor', price: '$100/hour', gigs: [gig1, gig4, gig3])
-ArtistInfo.create!(name: 'Sara Oneil', description: 'dancer, model', price: '$150/hour', gigs: [gig1, gig4, gig5])
+ArtistInfo.create!(name: 'Amani Qing', description: 'dancer, actor', price: '$75/hour', photo: "https://i.imgur.com/fLEGJSr.jpg")
+ArtistInfo.create!(name: 'Lisa Yang', description: 'model, actor', price: '$100/hour', photo: "https://i.imgur.com/K54TXjg.jpg")
+ArtistInfo.create!(name: 'David Oneil', description: 'dancer, model', price: '$150/hour', photo: "https://i.imgur.com/ZMoVS0E.jpg" )
+ArtistInfo.create!(name: 'Desay Urina', description: 'dancer, model', price: '$150/hour', photo: "https://i.imgur.com/dBuz51h.jpg" )
 
