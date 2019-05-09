@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'gigs#index'
   resources :artist_infos
   resources :gigs
   post '/auth/login', to: 'authentication#login'
