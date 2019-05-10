@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3000'
+const baseUrl = 'https://gig-agent.herokuapp.com'
 
 export const showArtists = () => {
     return fetch( `${ baseUrl }/artist_infos` )

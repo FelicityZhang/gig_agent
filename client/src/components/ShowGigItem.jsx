@@ -23,10 +23,17 @@ export default class ShowGigItem extends Component {
         return (
             <div>
                 { this.props.gigItem &&
-                    <div>
-                        <h1>{ this.props.gigItem.name }</h1>
-                        <h1>{ this.props.gigItem.description }</h1>
-                        <button onClick={ this.handleClick }>Apply</button>
+
+
+
+                    <div className='gigItem'>
+                        <div class='desContainer'>
+                            <div className='gigTitle margin-30'> <h3>{ this.props.gigItem.name }</h3></div>
+                            <div className='gigImgContainer margin-30'><img className='gigImg' src='https://i.imgur.com/dDRCts7.jpg' /></div>
+                            <div className='font-weight margin-30'>Description:</div>
+                            <div className='description margin-30'>{ this.props.gigItem.description }</div>
+                        </div>
+                        <button className='apply' onClick={ this.handleClick }>Apply</button>
                     </div>
                 }
             </div>

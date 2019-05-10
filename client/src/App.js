@@ -213,22 +213,35 @@ class App extends Component {
 
     return (
       <div className="App" >
-        <div>
-          { this.state.currentUser
-            ?
-            <>
-              <p>{ this.state.currentUser.username }</p>
-              <button onClick={ this.handleLogout }>logout</button>
-            </>
-            :
-            <button onClick={ this.handleLoginButton }>Login/register</button>
-          }
+        <div className='navbar'>
+          <div className='logoTitle'>GIGAgent</div>
+          <div className='functionbar'>
+            <Link className='link' to="/artist_infos">TALENTS</Link>&nbsp;
+          <Link className='link' to="/gigs">CASTINGS</Link>
+            <Link className='link' to="/post_job">POSTJOB</Link>
+            <Link className='link' to="/applied_job">APPLICATIONS</Link>
+            <Link className='link' to='/my_profile'>PROFILE</Link>
+          </div>
+
+          <div>
+            { this.state.currentUser
+              ?
+              <>
+                <p>{ this.state.currentUser.username }</p>
+                <button onClick={ this.handleLogout }>logout</button>
+              </>
+              :
+              <button onClick={ this.handleLoginButton }>Login/register</button>
+            }
+          </div>
         </div>
+
         <Route exact path="/login" render={ () => (
           <Login
             handleLogin={ this.handleLogin }
             handleChange={ this.authHandleChange }
             formData={ this.state.authFormData } /> ) } />
+
         <Route exact path="/register" render={ () => (
           <Register
             handleRegister={ this.handleRegister }
@@ -236,11 +249,6 @@ class App extends Component {
             formData={ this.state.authFormData } /> ) } />
 
 
-        <Link to="/artist_infos">Artists</Link>&nbsp;
-        <Link to="/gigs">Gigs</Link>
-        <Link to="/post_job">Post Job</Link>
-        <Link to="/applied_job">My Applications</Link>
-        <Link to='/my_profile'>My Profile</Link>
 
         <Route exact path="/gigs" render={ () => (
           <ShowGigs
