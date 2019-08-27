@@ -9,6 +9,14 @@ class UsersController < ApplicationController
     render json: @users
   end
 
+    # GET artists
+    # create is_artist migration file in user table
+    # def artists
+    #   @users = User.find(where is_artist = true)          
+  
+    #   render json: @users
+    # end
+
   # GET /users/1
   def show
     render json: @user

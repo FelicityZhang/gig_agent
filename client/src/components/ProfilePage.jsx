@@ -11,110 +11,73 @@ export default class ProfilePage extends Component {
     render() {
         return (
             <div>
-                { this.props.currentUser && this.props.currentUser.username
-                    ?
-                    <div className='profileContainer'>
-                        <div><img src={ this.props.currentUser.photo } /></div>
-                        <div className='profileInfo'>
-                            <div>{ this.props.currentUser.username }</div>
-                            <div>{ this.props.currentUser.price }</div>
-                            <div>{ this.props.currentUser.role }</div>
-                            <div>{ this.props.currentUser.description }</div>
-                        </div>
-                    </div>
+                { this.props.currentUser &&
 
-                    :
+                    <React.Fragment >
+                        <form
+                            onSubmit={ ( e ) => {
+                                e.preventDefault();
+                                this.props.updateProfile( this.props.currentUser );
+                                this.setState( { isEdit: false } )
+                            } }>
+                            <div className='profilePage'>
+                                <div className='profileFromCon'>
 
-                    <div>
-                        { this.props.currentUser }
-                        <form onSubmit={ ( e ) => {
-                            e.preventDefault();
-                            this.props.updateProfile( this.props.currentUser );
-                            this.setState( { isEdit: false } )
-                        } }>
+                                    <div className='fromItem '>
+                                        role:
+                                    <input className='input1'
+                                            name="role"
+                                            type="text"
+                                            value={ this.props.profileForm.role }
+                                            onChange={ this.props.handleChange } />
+                                    </div>
+                                    <div className='fromItem'>
+                                        price:
+                                    <input className='input1'
+                                            name="price"
+                                            type="text"
+                                            value={ this.props.profileForm.price }
+                                            onChange={ this.props.handleChange } />
+                                    </div>
+                                    <div className='fromItem'>
+                                        photo:
+                                    <input className='input1'
+                                            name="photo"
+                                            type="text"
+                                            value={ this.props.profileForm.photo }
+                                            onChange={ this.props.handleChange } />
+                                    </div>
+                                    <div className='fromItem  margin-left30'>
+                                        description:
+                                    <input className='input2'
+                                            name="description"
+                                            type="text"
+                                            value={ this.props.profileForm.description }
+                                            onChange={ this.props.handleChange } />
 
-                            description:
-                                    <input
-                                name="description"
-                                type="text"
-                                value={ this.props.profileForm.description }
-                                onChange={ this.props.handleChange } />
-                            role:
-                                    <input
-                                name="role"
-                                type="text"
-                                value={ this.props.profileForm.role }
-                                onChange={ this.props.handleChange } />
-                            price:
-                                    <input
-                                name="price"
-                                type="text"
-                                value={ this.props.profileForm.price }
-                                onChange={ this.props.handleChange } />
-                            photo:
-                                    <input
-                                name="photo"
-                                type="text"
-                                value={ this.props.profileForm.photo }
-                                onChange={ this.props.handleChange } />
-                            <button>Create Profile</button>
+                                    </div>
+                                    <div><button className='createProfile'>Create</button></div>
+                                </div>
+                            </div>
+
                         </form>
 
-                    </div>
+                    </React.Fragment>
                 }
-
-
-                <div>
-                    { this.props.currentUser && this.props.currentUser.username }
-                    { this.props.currentUser && this.props.currentUser.role }
-
-
-                    {/* { this.state.isEdit
-                        ?
-
-                        <form onSubmit={ ( e ) => {
-                            e.preventDefault();
-                            this.props.updateProfile( this.props.currentUser );
-                            this.setState( { isEdit: false } )
-                        } }>
-
-                            description:
-                                    <input
-                                name="description"
-                                type="text"
-                                value={ this.props.profileForm.description }
-                                onChange={ this.props.handleChange } />
-                            role:
-                                    <input
-                                name="role"
-                                type="text"
-                                value={ this.props.profileForm.role }
-                                onChange={ this.props.handleChange } />
-                            price:
-                                    <input
-                                name="price"
-                                type="text"
-                                value={ this.props.profileForm.price }
-                                onChange={ this.props.handleChange } />
-                            photo:
-                                    <input
-                                name="photo"
-                                type="text"
-                                value={ this.props.profileForm.photo }
-                                onChange={ this.props.handleChange } />
-                            <button>Submit</button>
-                        </form>
-
-                        :
-                        <button onClick={ () => {
-                            this.setState( { isEdit: true } )
-                        } }>Edit Profile</button>
-                    } */}
-                </div>
-
-
-
             </div>
         )
     }
 }
+
+
+
+
+// <div className='profileContainer'>
+// <div><img src={ this.props.currentUser.photo } /></div>
+// <div className='profileInfo'>
+//     <div>{ this.props.currentUser.username }</div>
+//     <div>{ this.props.currentUser.profileForm.price }</div>
+//     <div>{ this.props.currentUser.profileForm.role }</div>
+//     <div>{ this.props.currentUser.profileForm.description }</div>
+// </div>
+// </div>

@@ -89,10 +89,14 @@ class App extends Component {
 
   async handleLogin() {
     const userData = await loginUser( this.state.authFormData );
+    ///if ()  for error handling
+    // if userData.token is not a token, show error message to user
+
     this.setState( {
       currentUser: decode( userData.token )
     } )
     localStorage.setItem( "jwt", userData.token )
+    this.props.history.push( '/gigs' )
   }
 
   async handleRegister( e ) {

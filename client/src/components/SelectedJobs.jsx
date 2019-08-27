@@ -5,7 +5,7 @@ const Register = ( props ) => {
     return (
         <div className='applicationPage'>
             <div className="apllied-container">
-                <h2>My applications</h2>
+                {/* <h2>My applications</h2> */ }
                 { props.selectedJobs.map( job => (
                     <React.Fragment key={ job.id }>
                         <div class='applyContainer'>

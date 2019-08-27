@@ -81,7 +81,6 @@
   margin-top: 50px;
   position: relative;
   left:350px;
-
 }
 /* ----------------------------------showGigs----------------------------------------- */
 .gigTitle{
@@ -125,6 +124,7 @@
   font-size:1.5vw;
 
 }
+
 .description{
   margin-top:8px;
   width:800px;
@@ -152,6 +152,7 @@
 .jiantou{
   color:brown;
 }
+
 .moreInfo{
   height:50px;
   width:180px; 
@@ -164,9 +165,10 @@
 
 /* ----------------------------------------application---------------------------------------- */
 .applicationPage{
-  margin-top:70px;
+  margin-top:50px;
   display:flex;
   justify-content: center;
+  font-family: 'EB Garamond', serif;
 }
 
 .apllied-container{
@@ -175,20 +177,20 @@
   align-items: center;
   width:1000px;
   height:auto;
-  background-image: url('https://i.imgur.com/otzMsUe.png');
   display:block;
   border: grey, solid;
   padding-bottom:30px;
   border-radius: 18px; 
-
 }
 
 .applyContainer{
   margin-left: 40px;
-  margin-top:40px;
+  margin-top:30px;
   width:850px;
   height:auto;
-  background-color: lightgrey;
+  /* background-image: url('https://i.imgur.com/otzMsUe.png');  */
+
+  background-color: rgb(235, 225, 225);
   display: flex;
   justify-content: center;
   text-align: left;
@@ -196,6 +198,7 @@
   font-family: 'EB Garamond', serif;
   padding:30px;
   border-radius: 13px; 
+  font-family: 'EB Garamond', serif;
 
 }
 
@@ -252,14 +255,129 @@
 .price{
   margin-right:15px;
 }
-/* 
-.modelContainer{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-right:20px;
-  padding:20px 10px 20px 10px;
-  text-align:center;
-  background-color: antiquewhite;
 
-} */
+/* ---------------------------------post job---------------------------------------------- */
+.jobPostPage{
+  display: flex;
+  justify-content: center;
+  
+}
+
+.jobPostContainer{
+  display:flex;
+  justify-content: center;
+  flex-direction:column;
+  width:500px;
+  height:500px;
+  margin-left: 600px;
+}
+
+.jobdescription{
+position:relative;
+bottom: 30px;
+
+}
+
+.jobDesCon{
+  margin-top:20px;
+  position:relative;
+  right: 20px;
+}
+
+.jobsubmit{
+  margin-top:20px;
+  width:120px;
+  height:50px;
+  background-color: brown;
+  color:white;
+  font-size: 1.2vw;
+  border-radius: 10px; 
+}
+
+.margin-right20{
+  margin-right: 10px;
+}
+
+
+.jobtextarea{
+  width:300px;
+  height:200px;
+  font-size:1.3vw;
+}
+
+.namejob{
+  width:300px;
+  height:30px;
+  font-size:1.3vw;
+}
+
+.input1 {
+  padding-left: 12px;
+  padding-bottom: -10px;
+  /* padding-left: 9px 0px 9px 12px; */
+  padding-top: 9px;
+  /* padding-bottom: 9px; */
+  width: 286px;
+  height: 34px;
+  border-radius: 8px;
+  border: solid 1px;
+  font-size: 1.2vw;
+  margin: 8px 0;
+  text-align: left;
+   
+}
+
+.input2 {
+  text-align: left;
+
+  padding-left: 12px;
+  padding-top: 9px;
+  width: 286px;
+  height: 86px;
+  border-radius: 8px;
+  border: solid 1px;
+  font-size: 1.2vw;
+
+}
+
+/* --------------------------------profilepage-------------------------------------------------------- */
+
+
+.profilePage{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  margin-left:600px;
+  margin-top: 80px;
+  font-size: 1.2vw;
+  font-family: 'EB Garamond', serif;
+
+}
+
+
+.profileFromCon{
+  width:600px;
+  height:600px;
+  background-image: url('https://i.imgur.com/otzMsUe.png');
+  justify-content:space-evenly;
+  display: flex;
+flex-direction: column;
+border-radius: 10px; 
+}
+
+
+
+.margin-left30{
+  position:relative;
+  right:20px;
+
+}
+
+.createProfile{
+  width:120px;
+  height:50px;
+  background-color: brown;
+  color:white;
+  font-size: 1.2vw;
+  border-radius: 10px; 
+}
